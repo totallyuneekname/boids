@@ -15,7 +15,6 @@
     "raf": "0.0.2",
     "ticker": "0.0.1"
   },
-  "gitHead": "d450d79f6388cb739e55a84b11c5b38660897ac1",
   "main": "index.js",
   "scripts": {
     "test": "jshint js/ test/ && mocha test",
@@ -24,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/anoopelias/boids.git"
+    "url": "git://github.com/totallyuneekname/boids.git"
   },
   "keywords": [
     "boids",
@@ -32,6 +31,6 @@
     "algorithm",
     "emergence"
   ],
-  "author": "Anoop Elias<anoopelias@gmail.com> (http:/anoopelias.github.io/)",
+  "author": "totallyuneekname (http:/totallyuneekname.github.io/)",
   "license": "MIT"
 }

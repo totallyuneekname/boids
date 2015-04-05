@@ -1,4 +1,4 @@
-var EventEmitter = require('events').EventEmitter, 
+var EventEmitter = require('events').EventEmitter,
   inherits = require('inherits'),
   Vector = require('./vector'),
   Dtree = require('./dtree'),
@@ -15,7 +15,7 @@ function Boids(opts, callback) {
 
   this.speedLimit = opts.speedLimit || 1;
   this.accelerationLimit = opts.accelerationLimit || 0.03;
-  this.separationDistance = opts.separationDistance || 30;
+  this.separationDistance = opts.separationDistance || 5;
   this.separationDistanceSq = Math.pow(this.separationDistance, 2);
   this.alignmentDistance = opts.alignmentDistance || 60;
   this.alignmentDistanceSq = Math.pow(this.alignmentDistance, 2);
@@ -24,13 +24,13 @@ function Boids(opts, callback) {
   this.separationForce = opts.separationForce || 2;
   this.cohesionForce = opts.cohesionForce || 1;
   this.alignmentForce = opts.alignmentForce || opts.alignment || 1;
-  this.maxDistSq = Math.max(this.separationDistanceSq, 
+  this.maxDistSq = Math.max(this.separationDistanceSq,
       this.cohesionDistanceSq, this.alignmentDistanceSq);
 
   var boids = this.boids = [];
 
   for (var i = 0, l = opts.boids === undefined ? 150 : opts.boids; i < l; i += 1) {
-    boids[i] = new Boid( 
+    boids[i] = new Boid(
       new Vector(Math.random()*100 - 50, Math.random()*100 - 50),
       new Vector(0, 0)
     );
@@ -62,7 +62,7 @@ Boids.prototype.calcCohesion = function(boid) {
     target,
     neighbors = this.tickData.neighbors,
     count = 0;
-  
+
   for(var i=0; i<neighbors.length; i++) {
     target = neighbors[i].neighbor;
     if(boid === target)
@@ -76,7 +76,7 @@ Boids.prototype.calcCohesion = function(boid) {
     }
   }
 
-  if( count === 0) 
+  if( count === 0)
     return new Vector(0, 0);
 
   return total
@@ -92,7 +92,7 @@ Boids.prototype.calcSeparation = function(boid) {
     target,
     distSq,
     neighbors = this.tickData.neighbors,
-    count = 0; 
+    count = 0;
 
   for(var i=0; i<neighbors.length; i++) {
     target = neighbors[i].neighbor;
@@ -114,7 +114,7 @@ Boids.prototype.calcSeparation = function(boid) {
 
   }
 
-  if(count === 0) 
+  if(count === 0)
     return new Vector(0, 0);
 
   return total
@@ -137,7 +137,7 @@ Boids.prototype.calcAlignment = function(boid) {
       continue;
 
     distSq = neighbors[i].distSq;
-    if(distSq < this.alignmentDistanceSq && 
+    if(distSq < this.alignmentDistanceSq &&
         isInFrontOf(boid, target.position)) {
       total = total.add(target.speed);
       count++;
@@ -187,7 +187,7 @@ Boids.prototype.tick = function() {
 };
 
 function isInFrontOf(boid, point) {
-  return boid.position.angle( boid.position.add(boid.speed), point) <= 
+  return boid.position.angle( boid.position.add(boid.speed), point) <=
     ( Math.PI / 3);
 }
 
