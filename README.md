@@ -2,7 +2,4 @@
 
 A lightweight JavaScript implementation of [boids](http://en.wikipedia.org/wiki/Boids). 
 
-This is a fork of [hughsk/boids](https://github.com/hughsk/boids) in terms of UI, and basic build structure. However the flocking algorithm is rewritten ground up.
-
-[Check out the demo](http://anoopelias.github.io/boids)
-
+This is a fork of [anoopelias/boids](https://github.com/anoopelias/boids), which is a fork of [hughsk/boids](https://github.com/hughsk/boids).
